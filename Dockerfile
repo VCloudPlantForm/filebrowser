@@ -19,8 +19,6 @@ RUN apt-get update && apt-get install -y tzdata openntpd \
 
 ENV TZ=Asia/Shanghai
 
-RUN apt-get install -y qemu-utils
-
 WORKDIR /opt
 
-COPY ./filebrowser /opt/filebrowser
+COPY --from=0 /opt/filebrowser ./
