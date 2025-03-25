@@ -1,10 +1,13 @@
-FROM alpine:latest
-RUN apk --update add ca-certificates \
-                     mailcap \
-                     curl \
-                     jq
+FROM debian:latest
 
-EXPOSE 8080
+RUN apt-get update && apt-get install -y tzdata openntpd \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone
 
-COPY docker_config.json /.filebrowser.json
-COPY filebrowser /filebrowser
+ENV TZ=Asia/Shanghai
+
+RUN apt-get install -y qemu-utils
+
+WORKDIR /opt
+
+COPY --from=0 filebrowser /opt/filebrowser
