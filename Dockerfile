@@ -10,4 +10,4 @@ RUN apt-get install -y qemu-utils
 
 WORKDIR /opt
 
-COPY --from=0 filebrowser /opt/filebrowser
+COPY ./filebrowser /opt/filebrowser
