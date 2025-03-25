@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-bar showMenu showLogo>
+    <header-bar showMenu :showLogo="false">
       <search />
       <title />
       <action
@@ -12,12 +12,12 @@
 
       <template #actions>
         <template v-if="!isMobile">
-          <action
+          <!-- <action
             v-if="headerButtons.share"
             icon="share"
             :label="t('buttons.share')"
             show="share"
-          />
+          /> -->
           <action
             v-if="headerButtons.rename"
             icon="mode_edit"
@@ -47,12 +47,12 @@
           />
         </template>
 
-        <action
+        <!-- <action
           v-if="headerButtons.shell"
           icon="code"
           :label="t('buttons.shell')"
           @action="layoutStore.toggleShell"
-        />
+        /> -->
         <action
           :icon="viewIcon"
           :label="t('buttons.switchView')"

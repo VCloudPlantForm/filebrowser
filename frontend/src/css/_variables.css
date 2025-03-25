@@ -1,6 +1,6 @@
 :root {
-  --blue: #2196f3;
-  --dark-blue: #1e88e5;
+  --blue: #3b82f6;
+  --dark-blue: #3b82f6;
   --red: #f44336;
   --dark-red: #d32f2f;
   --moon-grey: #f2f2f2;
@@ -9,7 +9,7 @@
   --icon-orange: #f47750;
   --icon-yellow: #fdbc4b;
   --icon-green: #2ecc71;
-  --icon-blue: #1d99f3;
+  --icon-blue: #3b82f6;
   --icon-violet: #9b59b6;
 
   --input-red: rgb(252, 208, 205);

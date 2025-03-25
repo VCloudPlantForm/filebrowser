@@ -31,12 +31,15 @@ export default defineConfig(({ command }) => {
       plugins,
       resolve,
       server: {
+        open: true,
+        port:3333,
+        host: '0.0.0.0',
         proxy: {
           "/api/command": {
-            target: "ws://127.0.0.1:8080",
+            target: "ws://192.168.40.52:8080",
             ws: true,
           },
-          "/api": "http://127.0.0.1:8080",
+          "/api": "http://192.168.40.52:8080",
         },
       },
     };

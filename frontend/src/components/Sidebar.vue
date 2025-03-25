@@ -10,9 +10,9 @@
       >
         <i class="material-icons">folder</i>
         <span>{{ $t("sidebar.myFiles") }}</span>
-      </button>
 
-      <div v-if="user.perm.create">
+      </button>
+      <div  v-if="user.perm.create">
         <button
           @click="showHover('newDir')"
           class="action"
@@ -35,7 +35,7 @@
       </div>
 
       <div>
-        <button
+        <!-- <button
           class="action"
           @click="toSettings"
           :aria-label="$t('sidebar.settings')"
@@ -43,9 +43,9 @@
         >
           <i class="material-icons">settings_applications</i>
           <span>{{ $t("sidebar.settings") }}</span>
-        </button>
+        </button> -->
 
-        <button
+        <!-- <button
           v-if="canLogout"
           @click="logout"
           class="action"
@@ -55,7 +55,7 @@
         >
           <i class="material-icons">exit_to_app</i>
           <span>{{ $t("sidebar.logout") }}</span>
-        </button>
+        </button> -->
       </div>
     </template>
     <template v-else>
@@ -81,9 +81,10 @@
       </router-link>
     </template>
 
+    <!-- v-if="isFiles && !disableUsedPercentage" -->
     <div
       class="credits"
-      v-if="isFiles && !disableUsedPercentage"
+       v-if="false"
       style="width: 90%; margin: 2em 2.5em 3em 2.5em"
     >
       <progress-bar :val="usage.usedPercentage" size="small"></progress-bar>
@@ -91,7 +92,7 @@
       {{ usage.used }} of {{ usage.total }} used
     </div>
 
-    <p class="credits">
+    <p class="credits" v-if="false">
       <span>
         <span v-if="disableExternal">File Browser</span>
         <a
@@ -193,9 +194,9 @@ export default {
   watch: {
     $route: {
       handler(to) {
-        if (to.path.includes("/files")) {
-          this.fetchUsage();
-        }
+        // if (to.path.includes("/files")) {
+        //   this.fetchUsage();
+        // }
       },
       immediate: true,
     },

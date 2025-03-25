@@ -48,9 +48,9 @@ export async function fetchURL(
       res.status
     );
 
-    if (auth && res.status == 401) {
-      logout();
-    }
+    // if (auth && res.status == 401) {
+    //   logout();
+    // }
 
     throw error;
   }

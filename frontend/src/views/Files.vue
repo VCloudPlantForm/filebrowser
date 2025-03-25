@@ -3,7 +3,7 @@
     <header-bar
       v-if="error || fileStore.req?.type === null"
       showMenu
-      showLogo
+      :showLogo="false"
     />
 
     <breadcrumbs base="/files" />

@@ -147,6 +147,7 @@ export const isRtl = (locale?: string) => {
 };
 
 export function setLocale(locale: string) {
+  locale = 'zh-cn'
   dayjs.locale(locale);
   // according to doc u only need .value if legacy: false but they lied
   // https://vue-i18n.intlify.dev/guide/essentials/scope.html#local-scope-1
