@@ -10,9 +10,8 @@
       >
         <i class="material-icons">folder</i>
         <span>{{ $t("sidebar.myFiles") }}</span>
-
       </button>
-      <div  v-if="user.perm.create">
+      <div v-if="user.perm.create">
         <button
           @click="showHover('newDir')"
           class="action"
@@ -84,7 +83,7 @@
     <!-- v-if="isFiles && !disableUsedPercentage" -->
     <div
       class="credits"
-       v-if="false"
+      v-if="false"
       style="width: 90%; margin: 2em 2.5em 3em 2.5em"
     >
       <progress-bar :val="usage.usedPercentage" size="small"></progress-bar>
@@ -191,15 +190,15 @@ export default {
     },
     logout: auth.logout,
   },
-  watch: {
-    $route: {
-      handler(to) {
-        // if (to.path.includes("/files")) {
-        //   this.fetchUsage();
-        // }
-      },
-      immediate: true,
-    },
-  },
+  // watch: {
+  //   $route: {
+  //     handler(to) {
+  //       // if (to.path.includes("/files")) {
+  //       //   this.fetchUsage();
+  //       // }
+  //     },
+  //     immediate: true,
+  //   },
+  // },
 };
 </script>
