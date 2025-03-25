@@ -7,6 +7,7 @@ COPY . .
 
 RUN go env -w GO111MODULE=on \
     && go env -w CGO_ENABLED=0 \
+    && go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct \
     && go env \
     && go mod tidy \
     && go build -o filebrowser .
