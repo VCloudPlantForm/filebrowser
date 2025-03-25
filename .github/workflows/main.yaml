@@ -97,11 +97,22 @@ jobs:
           registry: ${{ secrets.ALIYUN_REGISTRY }}
           username: ${{ secrets.ALIYUN_DOCKERHUB_USER }}
           password: ${{ secrets.ALIYUN_DOCKERHUB_PASSWORD }}
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - name: Sed Config
+        shell: bash
+        run: |
+          timestamp=`TZ="Asia/Shanghai" date +"%Y%m%d%H%M%S"`
+          TAGS_OPT="sc$timestamp"
+          echo "TAGS_OPT=$TAGS_OPT" >> $GITHUB_ENV  # 将 TAGS_OPT 变量导出为环境变量
+          docker build -t registry.cn-hangzhou.aliyuncs.com/startzyp/vcloud-filebrowser:$TAGS_OPT .
+      - name: push docker
+        shell: bash
+        run: |
+          docker push registry.cn-hangzhou.aliyuncs.com/startzyp/vcloud-filebrowser:$TAGS_OPT
+      # - name: Run GoReleaser
+      #   uses: goreleaser/goreleaser-action@v2
+      #   with:
+      #     version: latest
+      #     args: release --clean
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
