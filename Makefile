@@ -14,6 +14,7 @@ build-frontend: ## Build frontend
 
 .PHONY: build-backend
 build-backend: ## Build backend
+	$Q $(go) mod tidy
 	$Q $(go) build -ldflags '$(LDFLAGS)' -o .
 
 .PHONY: test
