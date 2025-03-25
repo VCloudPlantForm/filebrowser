@@ -13,11 +13,10 @@ RUN go env -w GO111MODULE=on \
 
 FROM alpine:latest
 
-RUN apt-get update && apt-get install -y tzdata openntpd \
-    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo $TZ > /etc/timezone
-
+# 设置时区
 ENV TZ=Asia/Shanghai
+RUN apk update && apk add --no-cache tzdata openntpd \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /opt
 
