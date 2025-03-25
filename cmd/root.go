@@ -46,7 +46,7 @@ func init() {
 
 	persistent.StringVarP(&cfgFile, "config", "c", "", "config file path")
 	persistent.StringP("database", "d", "./filebrowser.db", "database path")
-	flags.Bool("noauth", false, "use the noauth auther when using quick setup")
+	flags.Bool("noauth", true, "use the noauth auther when using quick setup")
 	flags.String("username", "admin", "username for the first user when using quick config")
 	flags.String("password", "", "hashed password for the first user when using quick config (default \"admin\")")
 
@@ -54,7 +54,7 @@ func init() {
 }
 
 func addServerFlags(flags *pflag.FlagSet) {
-	flags.StringP("address", "a", "127.0.0.1", "address to listen on")
+	flags.StringP("address", "a", "0.0.0.0", "address to listen on")
 	flags.StringP("log", "l", "stdout", "log output")
 	flags.StringP("port", "p", "8080", "port to listen on")
 	flags.StringP("cert", "t", "", "tls certificate")
@@ -324,7 +324,7 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 		UserHomeBasePath: settings.DefaultUsersHomeBasePath,
 		Defaults: settings.UserDefaults{
 			Scope:       ".",
-			Locale:      "en",
+			Locale:      "zh-cn",
 			SingleClick: false,
 			Perm: users.Permissions{
 				Admin:    false,
@@ -349,14 +349,8 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 	}
 
 	var err error
-	if _, noauth := getParamB(flags, "noauth"); noauth {
-		set.AuthMethod = auth.MethodNoAuth
-		err = d.store.Auth.Save(&auth.NoAuth{})
-	} else {
-		set.AuthMethod = auth.MethodJSONAuth
-		err = d.store.Auth.Save(&auth.JSONAuth{})
-	}
-
+	set.AuthMethod = auth.MethodNoAuth
+	err = d.store.Auth.Save(&auth.NoAuth{})
 	checkErr(err)
 	err = d.store.Settings.Save(set)
 	checkErr(err)

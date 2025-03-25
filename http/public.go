@@ -94,18 +94,6 @@ func ifPathWithName(r *http.Request) (id, filePath string) {
 	}
 }
 
-var publicShareHandler = withHashFile(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
-	file := d.raw.(*files.FileInfo)
-
-	if file.IsDir {
-		file.Listing.Sorting = files.Sorting{By: "name", Asc: false}
-		file.Listing.ApplySort()
-		return renderJSON(w, r, file)
-	}
-
-	return renderJSON(w, r, file)
-})
-
 var publicDlHandler = withHashFile(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	file := d.raw.(*files.FileInfo)
 	if !file.IsDir {

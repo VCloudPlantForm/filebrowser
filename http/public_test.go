@@ -58,7 +58,7 @@ func TestPublicShareHandlerAuthentication(t *testing.T) {
 	}
 
 	for name, tc := range testCases {
-		for handlerName, handler := range map[string]handleFunc{"public share handler": publicShareHandler, "public dl handler": publicDlHandler} {
+		for handlerName, handler := range map[string]handleFunc{"public dl handler": publicDlHandler} {
 			name, tc, handlerName, handler := name, tc, handlerName, handler
 			t.Run(fmt.Sprintf("%s: %s", handlerName, name), func(t *testing.T) {
 				t.Parallel()
