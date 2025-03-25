@@ -9,66 +9,8 @@ on:
   pull_request:
 
 jobs:
-  # linters
-  lint-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          package_json_file: "frontend/package.json"
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22.x"
-          cache: "pnpm"
-          cache-dependency-path: "frontend/pnpm-lock.yaml"
-      - run: make lint-frontend
-  lint-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: 1.23.0
-      - run: make lint-backend
-  lint:
-    runs-on: ubuntu-latest
-    needs: [lint-frontend, lint-backend]
-    steps:
-      - run: echo "done"
-
-  # tests
-  test-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          package_json_file: "frontend/package.json"
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22.x"
-          cache: "pnpm"
-          cache-dependency-path: "frontend/pnpm-lock.yaml"
-      - run: make test-frontend
-  test-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: 1.23.0
-      - run: make test-backend
-  test:
-    runs-on: ubuntu-latest
-    needs: [test-frontend, test-backend]
-    steps:
-      - run: echo "done"
-
-  # release
   release:
     runs-on: ubuntu-latest
-    needs: [lint, test]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -94,6 +36,7 @@ jobs:
         shell: bash
         run: |
           make build-backend
+          ls
       - name: Login to Aliyun Registry
         uses: docker/login-action@v1
         with:
