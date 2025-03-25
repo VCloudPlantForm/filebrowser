@@ -3,9 +3,10 @@ FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/golang:1.22.3 AS
 
 WORKDIR /opt
 
-COPY . .
+COPY . /opt/
 
-RUN ls
+RUN echo "复制到 /opt 目录下的内容：" && ls -l /opt
+
 
 RUN go env -w GO111MODULE=on \
     && go env -w CGO_ENABLED=0 \
