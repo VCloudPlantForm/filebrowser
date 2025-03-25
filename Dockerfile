@@ -5,6 +5,8 @@ WORKDIR /opt
 
 COPY . .
 
+RUN ls
+
 RUN go env -w GO111MODULE=on \
     && go env -w CGO_ENABLED=0 \
     && go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct \
