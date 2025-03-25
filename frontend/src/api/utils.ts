@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/stores/auth";
-import { renew, logout } from "@/utils/auth";
+import { renew } from "@/utils/auth"; //logout
 import { baseURL } from "@/utils/constants";
 import { encodePath } from "@/utils/url";
 
