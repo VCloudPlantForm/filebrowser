@@ -56,10 +56,10 @@ func init() {
 func addServerFlags(flags *pflag.FlagSet) {
 	flags.StringP("address", "a", "0.0.0.0", "address to listen on")
 	flags.StringP("log", "l", "stdout", "log output")
-	flags.StringP("port", "p", "8080", "port to listen on")
+	flags.StringP("port", "p", "9191", "port to listen on")
 	flags.StringP("cert", "t", "", "tls certificate")
 	flags.StringP("key", "k", "", "tls key")
-	flags.StringP("root", "r", ".", "root to prepend to relative paths")
+	flags.StringP("root", "r", "/storage", "root to prepend to relative paths")
 	flags.String("socket", "", "socket to listen to (cannot be used with address, port, cert nor key flags)")
 	flags.Uint32("socket-perm", 0666, "unix socket file permissions") //nolint:gomnd
 	flags.StringP("baseurl", "b", "", "base url")
