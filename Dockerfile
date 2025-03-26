@@ -5,7 +5,7 @@ WORKDIR /opt
 
 COPY . .
 
-RUN echo "复制到 /opt 目录下的内容：" && ls -l /opt
+RUN echo "/opt 目录下的内容：" && ls -l /opt
 
 
 RUN go env -w GO111MODULE=on \
