@@ -80,10 +80,9 @@
       </router-link>
     </template>
 
-    <!-- v-if="isFiles && !disableUsedPercentage" -->
     <div
       class="credits"
-      v-if="false"
+      v-if="isFiles && !disableUsedPercentage"
       style="width: 90%; margin: 2em 2.5em 3em 2.5em"
     >
       <progress-bar :val="usage.usedPercentage" size="small"></progress-bar>
@@ -190,15 +189,15 @@ export default {
     },
     logout: auth.logout,
   },
-  // watch: {
-  //   $route: {
-  //     handler(to) {
-  //       // if (to.path.includes("/files")) {
-  //       //   this.fetchUsage();
-  //       // }
-  //     },
-  //     immediate: true,
-  //   },
-  // },
+  watch: {
+    $route: {
+      handler(to) {
+        if (to.path.includes("/files")) {
+          this.fetchUsage();
+        }
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
